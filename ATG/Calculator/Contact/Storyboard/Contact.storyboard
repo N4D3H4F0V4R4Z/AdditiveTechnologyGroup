@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Nvr-p9-L1v">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Cwr-n4-9Ce">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -10,41 +10,142 @@
     </dependencies>
     <scenes>
         <!--Contact View Controller-->
-        <scene sceneID="fqg-Z0-kZK">
+        <scene sceneID="238-u6-Pe7">
             <objects>
-                <viewController id="oOF-59-Edy" customClass="ContactViewController" customModule="ATG" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="jn7-eu-pUF">
+                <viewController id="H89-1K-VjF" customClass="ContactViewController" customModule="_D" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ntq-Rh-AkU">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="bzP-bn-5Qm"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="g5k-UC-xqA">
+                                <rect key="frame" x="0.0" y="88" width="414" height="246"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="246" id="Msy-Xl-fAC"/>
+                                </constraints>
+                            </mapView>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="QJp-Gn-Hlh">
+                                <rect key="frame" x="21" y="772" width="372" height="60"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R0F-1O-LV6">
+                                        <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="60" id="Cx6-Ub-09Q"/>
+                                            <constraint firstAttribute="width" constant="60" id="d5k-aN-tPN"/>
+                                        </constraints>
+                                        <state key="normal" title="Button" image="instagram"/>
+                                        <connections>
+                                            <action selector="instButtonAction:" destination="H89-1K-VjF" eventType="touchUpInside" id="e31-4b-4A9"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zd5-Z6-G02">
+                                        <rect key="frame" x="78" y="0.0" width="60" height="60"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="60" id="H9h-4C-HQ3"/>
+                                            <constraint firstAttribute="width" constant="60" id="KWY-7A-W7l"/>
+                                        </constraints>
+                                        <state key="normal" title="Button" image="email"/>
+                                        <connections>
+                                            <action selector="mailButtonAction:" destination="H89-1K-VjF" eventType="touchUpInside" id="Eh3-XB-1TP"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vkf-8R-Ens">
+                                        <rect key="frame" x="156" y="0.0" width="60" height="60"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="60" id="MhZ-DF-IKO"/>
+                                            <constraint firstAttribute="height" constant="60" id="bnJ-2W-Deb"/>
+                                        </constraints>
+                                        <state key="normal" title="Button" image="ATG"/>
+                                        <connections>
+                                            <action selector="atgButtonAction:" destination="H89-1K-VjF" eventType="touchUpInside" id="myx-0l-sPX"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="53T-dI-50e">
+                                        <rect key="frame" x="234" y="0.0" width="60" height="60"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="60" id="iDf-Hg-Qiq"/>
+                                            <constraint firstAttribute="width" constant="60" id="zgU-w4-2Zy"/>
+                                        </constraints>
+                                        <state key="normal" title="Button" image="telephone"/>
+                                        <connections>
+                                            <action selector="phoneButtonAction:" destination="H89-1K-VjF" eventType="touchUpInside" id="SxJ-53-3DE"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4RK-Lp-RWn">
+                                        <rect key="frame" x="312" y="0.0" width="60" height="60"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="60" id="J7b-yf-rVV"/>
+                                            <constraint firstAttribute="width" constant="60" id="Wjn-Wq-OoO"/>
+                                        </constraints>
+                                        <state key="normal" title="Button" image="telegram"/>
+                                        <connections>
+                                            <action selector="telegramButtonAction:" destination="H89-1K-VjF" eventType="touchUpInside" id="GQb-bn-yE9"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="X1O-Sg-Bnu"/>
+                                </constraints>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="krJ-7H-AP6">
+                                <rect key="frame" x="20" y="356" width="374" height="19.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="OCx-xn-6ZE"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="krJ-7H-AP6" firstAttribute="leading" secondItem="OCx-xn-6ZE" secondAttribute="leading" constant="20" id="9NM-Dn-um9"/>
+                            <constraint firstItem="g5k-UC-xqA" firstAttribute="trailing" secondItem="OCx-xn-6ZE" secondAttribute="trailing" id="DJU-Jb-Qrs"/>
+                            <constraint firstItem="QJp-Gn-Hlh" firstAttribute="centerX" secondItem="krJ-7H-AP6" secondAttribute="centerX" id="MUH-Ty-BGM"/>
+                            <constraint firstItem="OCx-xn-6ZE" firstAttribute="bottom" secondItem="QJp-Gn-Hlh" secondAttribute="bottom" constant="30" id="PO3-wo-2IH"/>
+                            <constraint firstItem="krJ-7H-AP6" firstAttribute="top" secondItem="g5k-UC-xqA" secondAttribute="bottom" constant="22" id="RaD-fC-bYq"/>
+                            <constraint firstItem="g5k-UC-xqA" firstAttribute="leading" secondItem="OCx-xn-6ZE" secondAttribute="leading" id="fuu-tn-tSu"/>
+                            <constraint firstItem="g5k-UC-xqA" firstAttribute="top" secondItem="OCx-xn-6ZE" secondAttribute="top" id="g8h-6I-NQc"/>
+                            <constraint firstItem="OCx-xn-6ZE" firstAttribute="trailing" secondItem="krJ-7H-AP6" secondAttribute="trailing" constant="20" id="ufA-If-Zr0"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="9r9-BC-CSY"/>
+                    <navigationItem key="navigationItem" id="LBW-Ds-z5z"/>
+                    <connections>
+                        <outlet property="atgButtonView" destination="vkf-8R-Ens" id="BiJ-Hp-ENF"/>
+                        <outlet property="contactLabelView" destination="krJ-7H-AP6" id="R2o-Gd-Kgh"/>
+                        <outlet property="instButtonView" destination="R0F-1O-LV6" id="qc0-1Q-LXg"/>
+                        <outlet property="mailButtonView" destination="zd5-Z6-G02" id="Dcb-UO-ODh"/>
+                        <outlet property="mapView" destination="g5k-UC-xqA" id="ld7-EW-mdN"/>
+                        <outlet property="phoneButtonView" destination="53T-dI-50e" id="1Vq-rJ-zi0"/>
+                        <outlet property="telegramButtonView" destination="4RK-Lp-RWn" id="MvW-eA-nXD"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="BnT-8L-slG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LRc-OQ-vG4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="657.97101449275362" y="39.508928571428569"/>
+            <point key="canvasLocation" x="2957.971014492754" y="79.6875"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="R6R-my-ggg">
+        <scene sceneID="Ry8-qp-LiN">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Nvr-p9-L1v" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Cwr-n4-9Ce" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="X6v-Is-I8Y">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="XiU-Vf-I2a">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="oOF-59-Edy" kind="relationship" relationship="rootViewController" id="75I-YU-B6m"/>
+                        <segue destination="H89-1K-VjF" kind="relationship" relationship="rootViewController" id="njm-Ok-MGm"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Dig-Wa-vHO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Acg-qq-ybs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-252.17391304347828" y="39.508928571428569"/>
+            <point key="canvasLocation" x="2047.826086956522" y="79.6875"/>
         </scene>
     </scenes>
     <resources>
+        <image name="ATG" width="125" height="122"/>
+        <image name="email" width="128" height="128"/>
+        <image name="instagram" width="128" height="128"/>
+        <image name="telegram" width="128" height="128"/>
+        <image name="telephone" width="128" height="128"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
