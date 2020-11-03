@@ -11,6 +11,18 @@
 		62BEAF802551557B0078EEBF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 62BEAF7F2551557B0078EEBF /* Assets.xcassets */; };
 		62BEAF832551557B0078EEBF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 62BEAF812551557B0078EEBF /* LaunchScreen.storyboard */; };
 		62BEAF93255156FE0078EEBF /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62BEAF92255156FE0078EEBF /* TabBarViewController.swift */; };
+		62BEAFA225515A600078EEBF /* SlidersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62BEAFA125515A600078EEBF /* SlidersViewController.swift */; };
+		62BEAFA625515A700078EEBF /* RusSlidersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62BEAFA525515A700078EEBF /* RusSlidersViewController.swift */; };
+		62BEAFA925515A810078EEBF /* Sliders.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 62BEAFA825515A810078EEBF /* Sliders.storyboard */; };
+		62BEAFAC25515A910078EEBF /* RusSliders.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 62BEAFAB25515A910078EEBF /* RusSliders.storyboard */; };
+		62BEAFB525515C100078EEBF /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62BEAFB425515C100078EEBF /* AboutViewController.swift */; };
+		62BEAFB925515C200078EEBF /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62BEAFB825515C200078EEBF /* VideoViewController.swift */; };
+		62BEAFBC25515C330078EEBF /* ContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62BEAFBB25515C330078EEBF /* ContactViewController.swift */; };
+		62BEAFC225515C590078EEBF /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62BEAFC125515C590078EEBF /* PlayerViewController.swift */; };
+		62BEAFC625515C680078EEBF /* Video.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 62BEAFC525515C680078EEBF /* Video.storyboard */; };
+		62BEAFCA25515C790078EEBF /* Player.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 62BEAFC925515C790078EEBF /* Player.storyboard */; };
+		62BEAFCD25515C870078EEBF /* Contact.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 62BEAFCC25515C870078EEBF /* Contact.storyboard */; };
+		62BEAFD025515C930078EEBF /* About.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 62BEAFCF25515C930078EEBF /* About.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +32,18 @@
 		62BEAF822551557B0078EEBF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		62BEAF842551557B0078EEBF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		62BEAF92255156FE0078EEBF /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
+		62BEAFA125515A600078EEBF /* SlidersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlidersViewController.swift; sourceTree = "<group>"; };
+		62BEAFA525515A700078EEBF /* RusSlidersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RusSlidersViewController.swift; sourceTree = "<group>"; };
+		62BEAFA825515A810078EEBF /* Sliders.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Sliders.storyboard; sourceTree = "<group>"; };
+		62BEAFAB25515A910078EEBF /* RusSliders.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RusSliders.storyboard; sourceTree = "<group>"; };
+		62BEAFB425515C100078EEBF /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
+		62BEAFB825515C200078EEBF /* VideoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoViewController.swift; sourceTree = "<group>"; };
+		62BEAFBB25515C330078EEBF /* ContactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactViewController.swift; sourceTree = "<group>"; };
+		62BEAFC125515C590078EEBF /* PlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
+		62BEAFC525515C680078EEBF /* Video.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Video.storyboard; sourceTree = "<group>"; };
+		62BEAFC925515C790078EEBF /* Player.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Player.storyboard; sourceTree = "<group>"; };
+		62BEAFCC25515C870078EEBF /* Contact.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Contact.storyboard; sourceTree = "<group>"; };
+		62BEAFCF25515C930078EEBF /* About.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = About.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +76,7 @@
 		62BEAF75255155790078EEBF /* ATG */ = {
 			isa = PBXGroup;
 			children = (
+				62BEAF97255158FE0078EEBF /* Calculator */,
 				62BEAF90255156E10078EEBF /* TabBar */,
 				62BEAF76255155790078EEBF /* AppDelegate.swift */,
 				62BEAF7F2551557B0078EEBF /* Assets.xcassets */,
@@ -75,6 +100,169 @@
 				62BEAF92255156FE0078EEBF /* TabBarViewController.swift */,
 			);
 			path = ViewController;
+			sourceTree = "<group>";
+		};
+		62BEAF97255158FE0078EEBF /* Calculator */ = {
+			isa = PBXGroup;
+			children = (
+				62BEAF9B255159FE0078EEBF /* Contact */,
+				62BEAF9A255159F80078EEBF /* Video */,
+				62BEAF99255159EE0078EEBF /* About */,
+				62BEAF98255159E70078EEBF /* Sliders */,
+			);
+			path = Calculator;
+			sourceTree = "<group>";
+		};
+		62BEAF98255159E70078EEBF /* Sliders */ = {
+			isa = PBXGroup;
+			children = (
+				62BEAF9E25515A260078EEBF /* RusSliders */,
+				62BEAF9D25515A1E0078EEBF /* Storyboard */,
+				62BEAF9C25515A160078EEBF /* ViewController */,
+			);
+			path = Sliders;
+			sourceTree = "<group>";
+		};
+		62BEAF99255159EE0078EEBF /* About */ = {
+			isa = PBXGroup;
+			children = (
+				62BEAFAF25515B430078EEBF /* Storyboard */,
+				62BEAFAE25515B380078EEBF /* ViewController */,
+			);
+			path = About;
+			sourceTree = "<group>";
+		};
+		62BEAF9A255159F80078EEBF /* Video */ = {
+			isa = PBXGroup;
+			children = (
+				62BEAFBE25515C3A0078EEBF /* Player */,
+				62BEAFB125515BDE0078EEBF /* Storyboard */,
+				62BEAFB025515B530078EEBF /* ViewController */,
+			);
+			path = Video;
+			sourceTree = "<group>";
+		};
+		62BEAF9B255159FE0078EEBF /* Contact */ = {
+			isa = PBXGroup;
+			children = (
+				62BEAFB325515BEE0078EEBF /* Storyboard */,
+				62BEAFB225515BE70078EEBF /* ViewController */,
+			);
+			path = Contact;
+			sourceTree = "<group>";
+		};
+		62BEAF9C25515A160078EEBF /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				62BEAFA125515A600078EEBF /* SlidersViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		62BEAF9D25515A1E0078EEBF /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				62BEAFA825515A810078EEBF /* Sliders.storyboard */,
+			);
+			path = Storyboard;
+			sourceTree = "<group>";
+		};
+		62BEAF9E25515A260078EEBF /* RusSliders */ = {
+			isa = PBXGroup;
+			children = (
+				62BEAFA025515A380078EEBF /* Storyboard */,
+				62BEAF9F25515A310078EEBF /* ViewController */,
+			);
+			path = RusSliders;
+			sourceTree = "<group>";
+		};
+		62BEAF9F25515A310078EEBF /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				62BEAFA525515A700078EEBF /* RusSlidersViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		62BEAFA025515A380078EEBF /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				62BEAFAB25515A910078EEBF /* RusSliders.storyboard */,
+			);
+			path = Storyboard;
+			sourceTree = "<group>";
+		};
+		62BEAFAE25515B380078EEBF /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				62BEAFB425515C100078EEBF /* AboutViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		62BEAFAF25515B430078EEBF /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				62BEAFCF25515C930078EEBF /* About.storyboard */,
+			);
+			path = Storyboard;
+			sourceTree = "<group>";
+		};
+		62BEAFB025515B530078EEBF /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				62BEAFB825515C200078EEBF /* VideoViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		62BEAFB125515BDE0078EEBF /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				62BEAFC525515C680078EEBF /* Video.storyboard */,
+			);
+			path = Storyboard;
+			sourceTree = "<group>";
+		};
+		62BEAFB225515BE70078EEBF /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				62BEAFBB25515C330078EEBF /* ContactViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		62BEAFB325515BEE0078EEBF /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				62BEAFCC25515C870078EEBF /* Contact.storyboard */,
+			);
+			path = Storyboard;
+			sourceTree = "<group>";
+		};
+		62BEAFBE25515C3A0078EEBF /* Player */ = {
+			isa = PBXGroup;
+			children = (
+				62BEAFC025515C480078EEBF /* Storyboard */,
+				62BEAFBF25515C400078EEBF /* ViewController */,
+			);
+			path = Player;
+			sourceTree = "<group>";
+		};
+		62BEAFBF25515C400078EEBF /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				62BEAFC125515C590078EEBF /* PlayerViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		62BEAFC025515C480078EEBF /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				62BEAFC925515C790078EEBF /* Player.storyboard */,
+			);
+			path = Storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -134,8 +322,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				62BEAFAC25515A910078EEBF /* RusSliders.storyboard in Resources */,
+				62BEAFC625515C680078EEBF /* Video.storyboard in Resources */,
+				62BEAFD025515C930078EEBF /* About.storyboard in Resources */,
 				62BEAF832551557B0078EEBF /* LaunchScreen.storyboard in Resources */,
 				62BEAF802551557B0078EEBF /* Assets.xcassets in Resources */,
+				62BEAFA925515A810078EEBF /* Sliders.storyboard in Resources */,
+				62BEAFCA25515C790078EEBF /* Player.storyboard in Resources */,
+				62BEAFCD25515C870078EEBF /* Contact.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -146,7 +340,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				62BEAFA625515A700078EEBF /* RusSlidersViewController.swift in Sources */,
+				62BEAFC225515C590078EEBF /* PlayerViewController.swift in Sources */,
+				62BEAFBC25515C330078EEBF /* ContactViewController.swift in Sources */,
 				62BEAF93255156FE0078EEBF /* TabBarViewController.swift in Sources */,
+				62BEAFB925515C200078EEBF /* VideoViewController.swift in Sources */,
+				62BEAFA225515A600078EEBF /* SlidersViewController.swift in Sources */,
+				62BEAFB525515C100078EEBF /* AboutViewController.swift in Sources */,
 				62BEAF77255155790078EEBF /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
