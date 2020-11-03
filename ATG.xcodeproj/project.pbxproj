@@ -25,6 +25,10 @@
 		62BEAFD025515C930078EEBF /* About.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 62BEAFCF25515C930078EEBF /* About.storyboard */; };
 		62BEAFD525515E240078EEBF /* AboutCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62BEAFD425515E240078EEBF /* AboutCollectionViewCell.swift */; };
 		62BEAFD925515E380078EEBF /* AboutModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62BEAFD825515E380078EEBF /* AboutModel.swift */; };
+		62BEAFE025515FE90078EEBF /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62BEAFDF25515FE90078EEBF /* TableViewCell.swift */; };
+		62BEAFE8255160110078EEBF /* CoverModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62BEAFE7255160110078EEBF /* CoverModel.swift */; };
+		62BEAFEB255160760078EEBF /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62BEAFEA255160760078EEBF /* Video.swift */; };
+		62BEAFEE255160870078EEBF /* ContentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62BEAFED255160870078EEBF /* ContentModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +52,10 @@
 		62BEAFCF25515C930078EEBF /* About.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = About.storyboard; sourceTree = "<group>"; };
 		62BEAFD425515E240078EEBF /* AboutCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutCollectionViewCell.swift; sourceTree = "<group>"; };
 		62BEAFD825515E380078EEBF /* AboutModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutModel.swift; sourceTree = "<group>"; };
+		62BEAFDF25515FE90078EEBF /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
+		62BEAFE7255160110078EEBF /* CoverModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoverModel.swift; sourceTree = "<group>"; };
+		62BEAFEA255160760078EEBF /* Video.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
+		62BEAFED255160870078EEBF /* ContentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,6 +150,8 @@
 			isa = PBXGroup;
 			children = (
 				62BEAFBE25515C3A0078EEBF /* Player */,
+				62BEAFDD25515F600078EEBF /* Model */,
+				62BEAFDC25515F5B0078EEBF /* Cell */,
 				62BEAFB125515BDE0078EEBF /* Storyboard */,
 				62BEAFB025515B530078EEBF /* ViewController */,
 			);
@@ -249,6 +259,7 @@
 		62BEAFBE25515C3A0078EEBF /* Player */ = {
 			isa = PBXGroup;
 			children = (
+				62BEAFDE25515F770078EEBF /* Model */,
 				62BEAFC025515C480078EEBF /* Storyboard */,
 				62BEAFBF25515C400078EEBF /* ViewController */,
 			);
@@ -283,6 +294,31 @@
 			isa = PBXGroup;
 			children = (
 				62BEAFD825515E380078EEBF /* AboutModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		62BEAFDC25515F5B0078EEBF /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				62BEAFDF25515FE90078EEBF /* TableViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		62BEAFDD25515F600078EEBF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				62BEAFE7255160110078EEBF /* CoverModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		62BEAFDE25515F770078EEBF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				62BEAFEA255160760078EEBF /* Video.swift */,
+				62BEAFED255160870078EEBF /* ContentModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -367,11 +403,15 @@
 				62BEAFBC25515C330078EEBF /* ContactViewController.swift in Sources */,
 				62BEAFD925515E380078EEBF /* AboutModel.swift in Sources */,
 				62BEAFD525515E240078EEBF /* AboutCollectionViewCell.swift in Sources */,
+				62BEAFEE255160870078EEBF /* ContentModel.swift in Sources */,
 				62BEAF93255156FE0078EEBF /* TabBarViewController.swift in Sources */,
+				62BEAFE025515FE90078EEBF /* TableViewCell.swift in Sources */,
 				62BEAFB925515C200078EEBF /* VideoViewController.swift in Sources */,
 				62BEAFA225515A600078EEBF /* SlidersViewController.swift in Sources */,
+				62BEAFEB255160760078EEBF /* Video.swift in Sources */,
 				62BEAFB525515C100078EEBF /* AboutViewController.swift in Sources */,
 				62BEAF77255155790078EEBF /* AppDelegate.swift in Sources */,
+				62BEAFE8255160110078EEBF /* CoverModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
