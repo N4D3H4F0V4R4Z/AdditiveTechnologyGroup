@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="yUp-Uu-eax">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="yUp-Uu-eax">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -11,11 +11,14 @@
         <!--Player View Controller-->
         <scene sceneID="vuo-aq-J6d">
             <objects>
-                <viewController id="yUp-Uu-eax" customClass="PlayerViewController" customModule="_D" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="yUp-Uu-eax" customClass="PlayerViewController" customModule="ATG" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Bz2-Mi-MQH">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Grey-Gradient-Background" translatesAutoresizingMaskIntoConstraints="NO" id="4ue-38-vP4">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                            </imageView>
                             <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W9e-Vv-i4S">
                                 <rect key="frame" x="0.0" y="44" width="414" height="280"/>
                                 <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -39,12 +42,16 @@
                         <viewLayoutGuide key="safeArea" id="TWb-Gi-XUw"/>
                         <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstAttribute="bottom" secondItem="4ue-38-vP4" secondAttribute="bottom" id="3US-vV-k23"/>
                             <constraint firstItem="Zkm-EO-JPw" firstAttribute="top" secondItem="lx9-XQ-5OL" secondAttribute="bottom" constant="8" id="3iz-QE-Ob2"/>
+                            <constraint firstItem="4ue-38-vP4" firstAttribute="leading" secondItem="TWb-Gi-XUw" secondAttribute="leading" id="GOZ-6K-ytr"/>
                             <constraint firstItem="TWb-Gi-XUw" firstAttribute="trailing" secondItem="lx9-XQ-5OL" secondAttribute="trailing" constant="20" id="JgU-2r-Uzh"/>
                             <constraint firstItem="lx9-XQ-5OL" firstAttribute="leading" secondItem="TWb-Gi-XUw" secondAttribute="leading" constant="20" id="R0E-pd-Yke"/>
                             <constraint firstItem="Zkm-EO-JPw" firstAttribute="leading" secondItem="TWb-Gi-XUw" secondAttribute="leading" constant="20" id="c7n-hO-Cb1"/>
+                            <constraint firstItem="4ue-38-vP4" firstAttribute="top" secondItem="Bz2-Mi-MQH" secondAttribute="top" id="cmQ-69-drK"/>
                             <constraint firstItem="W9e-Vv-i4S" firstAttribute="leading" secondItem="TWb-Gi-XUw" secondAttribute="leading" id="f7f-on-0bG"/>
                             <constraint firstItem="W9e-Vv-i4S" firstAttribute="trailing" secondItem="TWb-Gi-XUw" secondAttribute="trailing" id="gIl-AW-hTf"/>
+                            <constraint firstItem="4ue-38-vP4" firstAttribute="trailing" secondItem="TWb-Gi-XUw" secondAttribute="trailing" id="iBd-Su-A13"/>
                             <constraint firstItem="TWb-Gi-XUw" firstAttribute="trailing" secondItem="Zkm-EO-JPw" secondAttribute="trailing" constant="20" id="k6r-GH-cJR"/>
                             <constraint firstItem="lx9-XQ-5OL" firstAttribute="top" secondItem="W9e-Vv-i4S" secondAttribute="bottom" constant="34" id="kxP-4y-wJQ"/>
                             <constraint firstItem="W9e-Vv-i4S" firstAttribute="top" secondItem="TWb-Gi-XUw" secondAttribute="top" id="tql-G6-QoJ"/>
@@ -61,4 +68,7 @@
             <point key="canvasLocation" x="63.768115942028992" y="101.78571428571428"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Grey-Gradient-Background" width="1440" height="900"/>
+    </resources>
 </document>

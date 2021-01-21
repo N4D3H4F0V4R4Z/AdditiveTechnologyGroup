@@ -9,6 +9,13 @@ import UIKit
 
 class SlidersViewController: UIViewController {
     
+    // - Variable
+    var volume: Double = 125
+    var material: Double = 1
+    var additioalFactor: Double = 0
+    var quantity: Int = 1
+    var isEngLang: Bool = true
+    
     // - Navigation
     @IBOutlet weak var russianVCButtonView: UIBarButtonItem!
     
@@ -66,6 +73,14 @@ class SlidersViewController: UIViewController {
     
     @IBOutlet weak var expressTotalCostLabel: UILabel!
     
+    // - Labels
+    @IBOutlet weak var partDimensionLabelView: UILabel!
+    @IBOutlet weak var volumeLabelView: UILabel!
+    @IBOutlet weak var materialOptionsLabelView: UILabel!
+    @IBOutlet weak var quantityRequiredLabelView: UILabel!
+    @IBOutlet weak var economyLabelView: UILabel!
+    @IBOutlet weak var expressLabelView: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -78,11 +93,25 @@ class SlidersViewController: UIViewController {
         activityTypeButtons.first?.isSelected = true
         
         imageView.image = UIImage(named: "White Nylon")
+        calculateSum()
     }
     
     @IBAction func russianVCButtonAction(_ sender: Any) {
-        let russianVC = UIStoryboard(name: "RusSliders", bundle: nil).instantiateInitialViewController() as! RusSlidersViewController
-        navigationController?.pushViewController(russianVC, animated: true)
+        
+        isEngLang.toggle()
+        UIView.transition(with: self.view, duration: 0.4, options: .transitionFlipFromRight) {
+            
+        } completion: { [weak self] (_) in
+            guard let self = self else { return }
+            // Safe unwrap - это обычный if, просто мы не тащим за собой фигурные скобки, есои проверка не пройдена и будет nil, то сработает else и выйдет из кода
+            guard let selectedButton = self.activityTypeButtons.first(where: { $0.isSelected }) else {
+                // alert, например
+                return
+            }
+            self.changeLabels()
+            self.configureNavigationBar()
+            self.materialButtonAction(selectedButton)
+        }
         
         print("russianVCButtonAction")
     }
@@ -108,181 +137,174 @@ class SlidersViewController: UIViewController {
         quantityRequiredSlider.value = 1
         quantityRequiredLabel.text = "1"
         
-        economyUnitCostLabel.text = "Unit cost: €50.00"
-        economyTotalCostLabel.text = "Total cost: €50.00"
-        
-        expressUnitCostLabel.text = "Unit cost: €50.00"
-        expressTotalCostLabel.text = "Total cost: €50.00"
+        if isEngLang {
+            economyUnitCostLabel.text = "Unit cost: €137"
+            economyTotalCostLabel.text = "Total cost: €137"
+            
+            expressUnitCostLabel.text = "Unit cost: €187"
+            expressTotalCostLabel.text = "Total cost: €187"
+        } else {
+            economyUnitCostLabel.text = "Поштучно: 11250₽"
+            economyTotalCostLabel.text = "Оптом: 11250₽"
+            
+            expressUnitCostLabel.text = "Поштучно: 15000₽"
+            expressTotalCostLabel.text = "Оптом: 15000₽"
+        }
         
         print("resetButtonAction")
     }
     
     // - Part Dimensions(mm)
     @IBAction func partDimensionsActionButton(_ sender: Any) {
-        let alertController = UIAlertController(title: "Part Dimensions(mm)", message: """
+        
+        let title: String
+        let message: String
+        let gotIt: String
+        
+        if isEngLang {
+            title = "Part Dimensions(mm)"
+            message = """
 Choose maximum width, depth and height of your part.
+
 The build size is 280*330*410 mm.
-""", preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "ok", style: .default) { _ in
-            print("Did tap on Ok Action")
+"""
+            gotIt = "Got it"
+        } else {
+            title = "Габариты детали(мм)"
+            message = """
+    Выберите максимальные габариты детали по осям X, Y, Z.
+
+    Область построения- 280*330*410 мм.
+    """
+            gotIt = "Понятно"
         }
+        
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: gotIt, style: .default) {_ in }
         
         alertController.addAction(okAction)
         present(alertController, animated: true, completion: nil)
-        
-        print("Part Dimensions(mm)")
     }
     
     @IBAction func xSliderAction(_ sender: UISlider) {
-        xLabelView.text = String(Int(xSlider.value))
+        let value: String = "\(Int(sender.value))"
         
-        if xLabelView.text == "" {
-            xLabelView.text = ""
-        } else {
-            volumeFieldView.text = "Только одно"
+        volume = Double(Int(xSlider.value) * Int(ySlider.value) * Int(zSlider.value)) * 0.001
+        
+        switch sender.tag {
+        case 0:
+            xLabelView.text = value
+        case 1:
+            yLabelView.text = value
+        case 2:
+            zLabelView.text = value
+        default: break
         }
         
-        let sumX = xSlider.value * ySlider.value * zSlider.value
-        
-        let xEconomyUnitCost = Int(sumX * quantityRequiredSlider.value * 8)
-        let xEconomyTotalCost = Int(sumX * quantityRequiredSlider.value * 8)
-        
-        let xExpressUnitCost = Int(sumX * quantityRequiredSlider.value * 12)
-        let xExpressTotalCost = Int(sumX * quantityRequiredSlider.value * 12)
-        
-        economyUnitCostLabel.text = "Unit cost: €\(xEconomyUnitCost)"
-        economyTotalCostLabel.text = "Total cost: €\(xEconomyTotalCost)"
-        
-        expressUnitCostLabel.text = "Unit cost: €\(xExpressUnitCost)"
-        expressTotalCostLabel.text = "Total cost: €\(xExpressTotalCost)"
+        calculateSum()
         
         print("xSliderAction")
     }
     
-    @IBAction func ySliderAction(_ sender: Any) {
-        yLabelView.text = String(Int(ySlider.value))
-        
-        if yLabelView.text == "" {
-            yLabelView.text = ""
-        } else {
-            volumeFieldView.text = "Только одно"
-        }
-        
-        let sumY = xSlider.value * ySlider.value * zSlider.value
-        
-        let yEconomyUnitCost = Int(sumY * quantityRequiredSlider.value * 8)
-        let yEconomyTotalCost = Int(sumY * quantityRequiredSlider.value * 8)
-        
-        let yExpressUnitCost = Int(sumY * quantityRequiredSlider.value * 12)
-        let yExpressTotalCost = Int(sumY * quantityRequiredSlider.value * 12)
-        
-        economyUnitCostLabel.text = "Unit cost: €\(yEconomyUnitCost)"
-        economyTotalCostLabel.text = "Total cost: €\(yEconomyTotalCost)"
-        
-        expressUnitCostLabel.text = "Unit cost: €\(yExpressUnitCost)"
-        expressTotalCostLabel.text = "Total cost: €\(yExpressTotalCost)"
-        
-        print("ySliderAction")
-    }
-    
-    @IBAction func zSliderAction(_ sender: Any) {
-        zLabelView.text = String(Int(zSlider.value))
-        
-        if zLabelView.text == "" {
-            zLabelView.text = ""
-        } else {
-            volumeFieldView.text = "Только одно"
-        }
-        
-        let sumZ = xSlider.value * ySlider.value * zSlider.value
-        
-        let zEconomyUnitCost = Int(sumZ * quantityRequiredSlider.value * 8)
-        let zEconomyTotalCost = Int(sumZ * quantityRequiredSlider.value * 8)
-        
-        let zExpressUnitCost = Int(sumZ * quantityRequiredSlider.value * 12)
-        let zExpressTotalCost = Int(sumZ * quantityRequiredSlider.value * 12)
-        
-        economyUnitCostLabel.text = "Unit cost: €\(zEconomyUnitCost)"
-        economyTotalCostLabel.text = "Total cost: €\(zEconomyTotalCost)"
-        
-        expressUnitCostLabel.text = "Unit cost: €\(zExpressUnitCost)"
-        expressTotalCostLabel.text = "Total cost: €\(zExpressTotalCost)"
-        
-        print("zSliderAction")
-    }
     
     // - Volume
     @IBAction func volumeActionButton(_ sender: Any) {
-        let alertController = UIAlertController(title: "Volume", message: """
-        Сообщение
+        
+        let title: String
+        let message: String
+        let gotIt: String
+        
+        if isEngLang {
+            title = "Volume"
+            message = """
                 Volume
-        """, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "ok", style: .default) { _ in
-            print("Did tap on Ok Action")
+"""
+            gotIt = "Got it"
+        } else {
+            title = "Обьем"
+            message = """
+    Обьем
+    """
+            gotIt = "Понятно"
         }
+        
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: gotIt, style: .default) {_ in }
         
         alertController.addAction(okAction)
         present(alertController, animated: true, completion: nil)
         
-        print("Volume")
     }
     
     @IBAction func goVolumeButtonAction(_ sender: Any) {
+        // If isEmpty = false willbe true and we will go on straight
+        guard !(volumeFieldView.text?.isEmpty ?? true),
+              let value = Double(volumeFieldView.text ?? "") else { return }
         
-        if volumeFieldView.text == "" {
-            volumeFieldView.text = ""
-        } else {
-            xSlider.value = 0
-            ySlider.value = 0
-            zSlider.value = 0
-            xLabelView.text = "0"
-            yLabelView.text = "0"
-            zLabelView.text = "0"
-        }
+        volume = value
+        xSlider.value = 0
+        ySlider.value = 0
+        zSlider.value = 0
+        xLabelView.text = "0"
+        yLabelView.text = "0"
+        zLabelView.text = "0"
         
-        let volume = Int(volumeFieldView.text ?? "")
-        let sumVolume = Int(volume ?? 0) * Int(quantityRequiredSlider.value)
-        
-        let volumeEconomyUnitCost = Int(sumVolume * 90)
-        let volumeEconomyTotalCost = Int(sumVolume * 90)
-        
-        let volumeExpressUnitCost = Int(sumVolume * 120)
-        let volumeExpressTotalCost = Int(sumVolume * 120)
-        
-        economyUnitCostLabel.text = "Unit cost: €\(volumeEconomyUnitCost)"
-        economyTotalCostLabel.text = "Total cost: €\(volumeEconomyTotalCost)"
-        
-        expressUnitCostLabel.text = "Unit cost: €\(volumeExpressUnitCost)"
-        expressTotalCostLabel.text = "Total cost: €\(volumeExpressTotalCost)"
+        calculateSum()
         
         print("Volume Button")
     }
     
     // - Material Options
     @IBAction func materialOptionsActionButton(_ sender: Any) {
-        let alertController = UIAlertController(title: "Material Options", message: """
-        (Добавить выбор материала)
-        - Nylon EOS PA 2200
-        - Nylon EOS PA 3200 GF (glass-filled)
+        
+        let title: String
+        let message: String
+        let gotIt: String
+        
+        if isEngLang {
+            title = "Material Options"
+            message = """
+(Добавить выбор материала)
+- Nylon EOS PA 2200
+- Nylon EOS PA 3200 GF (glass-filled)
 
-        (Добавить выбор доп. обработки)
-        Extra post processing available:
-        - Polishing (*)
-        *Mind that sharp corners and thin details may be slightly damaged.
+(Добавить выбор доп. обработки)
+Extra post processing available:
+- Polishing (*)
+*Mind that sharp corners and thin details may be slightly damaged.
 
-        - Dyeing (*)
-        *Mind that parts will be snow-white by default.
+- Dyeing (*)
+*Mind that parts will be snow-white by default.
 
-         Post processing services may increase total manufacturing time for 1-2 working days.
-        """, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "ok", style: .default) { _ in
-            print("Did tap on Ok Action")
+Post processing services may increase total manufacturing time for 1-2 working days.
+"""
+            gotIt = "Got it"
+        } else {
+            title = "Выбор материала"
+            message = """
+    (Добавить выбор материала)
+    - Полиамид EOS PA 2200
+    - Полиамид EOS PA 3200 GF (стеклонаполненный)
+    
+    (Добавить выбор доп. обработки)
+    Дополнительная обработка:
+    - Галтование (шлифование поверхности в галтовочном барабане) (*)
+    *Обратите внимание, что острые углы, а также мельчайшие элементы могут быть сглажены.
+    
+    - Покраска методом травления пигментом (*)
+    *Детали из полиамида имеют белый цвет по умолчанию.
+
+    Услуга дополнительной обработки поверхности занимает обычно 1-2 рабочих дня.
+    """
+            gotIt = "Понятно"
         }
+        
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: gotIt, style: .default) {_ in }
         
         alertController.addAction(okAction)
         present(alertController, animated: true, completion: nil)
         
-        print("Material Options")
     }
     
     @IBAction func activityTypeSelected(_ sender: UIButton) {
@@ -292,157 +314,179 @@ The build size is 280*330*410 mm.
         print("activityTypeSelected")
     }
     
-    @IBAction func whiteNylonButtonAction(_ sender: Any) {
-        let sumXYZ = xSlider.value * ySlider.value * zSlider.value
+    // Функция, которая отвечает за смену коэффициентов при выборе материала: у каждого материала есть свой id, который берется в зависимости от нажатой кнопки. Когда мы меняем язык, у нас эта функция должна заново вызываться и подставлять в sender ту кнопку, у которой is selected = true
+    @IBAction func materialButtonAction(_ sender: UIButton) {
         
-        imageView.image = UIImage(named: "White Nylon")
-        whiteNylonButton.isSelected = true
+        let imageName: String
         
-        if whiteNylonButton.isSelected == true {
-            economyUnitCostLabel.text = "Unit cost: €\(sumXYZ * quantityRequiredSlider.value * 8)"
-            economyTotalCostLabel.text = "Total cost: €\(sumXYZ * quantityRequiredSlider.value * 8)"
-
-            expressUnitCostLabel.text = "Unit cost: €\(sumXYZ * quantityRequiredSlider.value * 12)"
-            expressTotalCostLabel.text = "Total cost: €\(sumXYZ * quantityRequiredSlider.value * 12)"
+        activityTypeButtons.forEach({ $0.isSelected = false })
+        sender.isSelected = true
+        
+        additioalFactor = 0
+        
+        if isEngLang {
+            switch sender.tag {
+            case 0:
+                material = 1
+                imageName = "White Nylon"
+            case 1:
+                material = 1
+                additioalFactor = 35
+                imageName = "White Nylon - Polished"
+            case 2:
+                material = 1.1
+                imageName = "Carbon Black Nylon"
+            case 3:
+                material = 1.1
+                additioalFactor = 35
+                imageName = "Carbon Black Nylon - Polished"
+            default: return
+            }
         } else {
-
+            switch sender.tag {
+            case 0:
+                material = 1
+                imageName = "White Nylon"
+            case 1:
+                material = 1
+                additioalFactor = 3000
+                imageName = "White Nylon - Polished"
+            case 2:
+                additioalFactor = 10
+                imageName = "Carbon Black Nylon"
+            case 3:
+                additioalFactor = 3010
+                imageName = "Carbon Black Nylon - Polished"
+            default: return
+            }
+            
+            imageView.image = UIImage(named: imageName)
+            
+            print("whiteNylonButtonAction")
         }
         
-        print("whiteNylonButtonAction")
-    }
-    
-    @IBAction func whiteNylonPolishedButtonAction(_ sender: Any) {
-        let sumXYZ = xSlider.value * ySlider.value * zSlider.value
-        
-        imageView.image = UIImage(named: "White Nylon - Polished")
-        whiteNylonPolishedButton.isSelected = true
-        
-        if whiteNylonPolishedButton.isSelected == true {
-            economyUnitCostLabel.text = "Unit cost: €\(sumXYZ + 3000 * quantityRequiredSlider.value * 8)"
-            economyTotalCostLabel.text = "Total cost: €\(sumXYZ + 3000 * quantityRequiredSlider.value * 8)"
-
-            expressUnitCostLabel.text = "Unit cost: €\(sumXYZ + 3000 * quantityRequiredSlider.value * 12)"
-            expressTotalCostLabel.text = "Total cost: €\(sumXYZ + 3000 * quantityRequiredSlider.value * 12)"
-        } else {
-
-        }
-        
-        print("whiteNylonPolishedButtonAction")
-    }
-    
-    @IBAction func carbonBlackNylonButtonAction(_ sender: Any) {
-        let sumXYZ = xSlider.value * ySlider.value * zSlider.value
-        
-        imageView.image = UIImage(named: "Carbon Black Nylon")
-        carbonBlackNylonButton.isSelected = true
-        
-        if carbonBlackNylonButton.isSelected == true {
-            economyUnitCostLabel.text = "Unit cost: €\(sumXYZ * 1.1 * quantityRequiredSlider.value * 8)"
-            economyTotalCostLabel.text = "Total cost: €\(sumXYZ * 1.1 * quantityRequiredSlider.value * 8)"
-
-            expressUnitCostLabel.text = "Unit cost: €\(sumXYZ * 1.1 * quantityRequiredSlider.value * 12)"
-            expressTotalCostLabel.text = "Total cost: €\(sumXYZ * 1.1 * quantityRequiredSlider.value * 12)"
-        } else {
-
-        }
-        
-        print("carbonBlackNylonButtonAction")
-    }
-    
-    @IBAction func carbonBlackNylonPolishedButtonAction(_ sender: Any) {
-        let sumXYZ = xSlider.value * ySlider.value * zSlider.value
-        
-        imageView.image = UIImage(named: "Carbon Black Nylon - Polished")
-        carbonBlackNylonPolishedButton.isSelected = true
-        
-        if carbonBlackNylonPolishedButton.isSelected == true {
-            economyUnitCostLabel.text = "Unit cost: €\(sumXYZ * 1.1 + 3000 * quantityRequiredSlider.value * 8)"
-            economyTotalCostLabel.text = "Total cost: €\(sumXYZ * 1.1 + 3000 * quantityRequiredSlider.value * 8)"
-
-            expressUnitCostLabel.text = "Unit cost: €\(sumXYZ * 1.1 + 3000 * quantityRequiredSlider.value * 12)"
-            expressTotalCostLabel.text = "Total cost: €\(sumXYZ * 1.1 + 3000 * quantityRequiredSlider.value * 12)"
-        } else {
-
-        }
-        
-        print("carbonBlackNylonPolishedButtonAction")
+        calculateSum()
     }
     
     // - Quantity Required
     @IBAction func quantityRequiredActionButton(_ sender: Any) {
-        let alertController = UIAlertController(title: "Quantity", message: """
-        Choose the required amount of copies. (*)
-        *We provide discount for volume production.
-        *High volume production may take longer time.
-        """, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "ok", style: .default) { _ in
-            print("Did tap on Ok Action")
+        
+        let title: String
+        let message: String
+        let gotIt: String
+        
+        if isEngLang {
+            title = "Quantity"
+            message = """
+Choose the required amount of copies. (*)
+*We provide discount for volume production.
+*High volume production may take longer time.
+"""
+            gotIt = "Got it"
+        } else {
+            title = "Количество/тираж"
+            message = """
+    Укажите требуемое количество деталей. (*)
+    *При заказе партии деталей предусмотрена скидка.
+    *Изготовление партии деталей может занять более длительный срок.
+    """
+            gotIt = "Понятно"
         }
+        
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: gotIt, style: .default) {_ in }
         
         alertController.addAction(okAction)
         present(alertController, animated: true, completion: nil)
         
-        print("Quantity Required")
     }
     
     @IBAction func quantityRequiredSliderAction(_ sender: Any) {
         quantityRequiredLabel.text = String(Int(quantityRequiredSlider.value))
         
-        let quantityRequiredEconomyUnitCost = Int(quantityRequiredSlider.value)
-        let quantityRequiredEconomyTotalCost = Int(quantityRequiredSlider.value)
+        quantity = Int(quantityRequiredSlider.value)
         
-        let quantityRequiredExpressUnitCost = Int(quantityRequiredSlider.value)
-        let quantityRequiredExpressTotalCost = Int(quantityRequiredSlider.value)
-        
-        economyUnitCostLabel.text = "Unit cost: €\(quantityRequiredEconomyUnitCost)"
-        economyTotalCostLabel.text = "Total cost: €\(quantityRequiredEconomyTotalCost)"
-        
-        expressUnitCostLabel.text = "Unit cost: €\(quantityRequiredExpressUnitCost)"
-        expressTotalCostLabel.text = "Total cost: €\(quantityRequiredExpressTotalCost)"
+        calculateSum()
         
         print("quantityRequiredSliderAction")
     }
     
     // - Economy
     @IBAction func economyActionButton(_ sender: Any) {
-        let alertController = UIAlertController(title: "Economy", message: """
-        Cost: (Price in EUR) (*)
-        *This is approximate price of 3d printing.
-        Please contact us to confirm.
+        
+        let title: String
+        let message: String
+        let gotIt: String
+        
+        if isEngLang {
+            title = "Economy"
+            message = """
+Cost: (Price in EUR) (*)
+*This is approximate price of 3d printing.
+Please contact us to confirm.
 
-        Term: 2-4 working days + shipping (*)
-        *High volume production may take longer time.
-        """, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "ok", style: .default) { _ in
-            print("Did tap on Ok Action")
+Term: 2-4 working days + shipping (*)
+*High volume production may take longer time.
+"""
+            gotIt = "Got it"
+        } else {
+            title = "Эконом"
+            message = """
+    Стоимость: (Цена в рублях) (*)
+    *Это ориентировочная стоимость 3d печати.
+    Свяжитесь с нами для подтверждения.
+
+    Сроки: 3-7 рабочих дней + доставка (*)
+    *Изготовление партии деталей может занять более длительный срок.
+    """
+            gotIt = "Понятно"
         }
+        
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: gotIt, style: .default) {_ in }
         
         alertController.addAction(okAction)
         present(alertController, animated: true, completion: nil)
         
-        print("Economy")
     }
     
     // - Express
     @IBAction func expressActionButton(_ sender: Any) {
-        let alertController = UIAlertController(title: "Express", message: """
-        Cost: (Price in EUR) (*)
-        *This is approximate price of 3d printing.
-        Please contact us to confirm.
+        
+        let title: String
+        let message: String
+        let gotIt: String
+        
+        if isEngLang {
+            title = "Express"
+            message = """
+Cost: (Price in EUR) (*)
+*This is approximate price of 3d printing.
+Please contact us to confirm.
 
-        Term: 3-7 working days + shipping (*)
-        *High volume production may take longer time.
-        """, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "ok", style: .default) { _ in
-            print("Did tap on Ok Action")
+Term: 3-7 working days + shipping (*)
+*High volume production may take longer time.
+"""
+            gotIt = "Got it"
+        } else {
+            title = "Экспресс"
+            message = """
+    Стоимость: (Цена в рублях) (*)
+    *Это ориентировочная стоимость 3d печати.
+    Свяжитесь с нами для подтверждения.
+
+    Сроки: 2-4 рабочих дней + доставка (*)
+    *Изготовление партии деталей может занять более длительный срок.
+    """
+            gotIt = "Понятно"
         }
+        
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: gotIt, style: .default) {_ in }
         
         alertController.addAction(okAction)
         present(alertController, animated: true, completion: nil)
-        
-        print("Express")
     }
-    
 }
 
 // MARK: -
@@ -453,6 +497,7 @@ private extension SlidersViewController {
     func configure() {
         configureView()
         configureNavigationBar()
+        changeLabels()
     }
     
     func configureView() {
@@ -460,8 +505,52 @@ private extension SlidersViewController {
     }
     
     func configureNavigationBar() {
-        navigationItem.title = "Slider"
+        if isEngLang {
+            navigationItem.title = "Slider"
+        } else {
+            navigationItem.title = "Слайдер"
+        }
+    }
+    
+    func calculateSum() {
+        
+        // if additioalFactor == true { sum += 35 } else { sum += 0 }
+        let unit: Double = volume * material
+        let economyKoef = isEngLang ? 1.1 : 90
+        let expressKoef = isEngLang ? 1.5 : 120
+        
+        let economyUnit: Int = Int(unit * economyKoef + additioalFactor)
+        let economyTotal: Int = Int(unit * economyKoef * Double(quantity) + additioalFactor)
+        let expressUnit: Int = Int(unit * expressKoef + additioalFactor)
+        let expressTotal: Int = Int(unit * expressKoef * Double(quantity) + additioalFactor)
+        
+        let unitText = isEngLang ? "Unit cost: " : "Поштучно: "
+        let totalText = isEngLang ? "Total cost: " : "Оптом: "
+        let quantity = isEngLang ? "€" : "₽"
+        
+        economyUnitCostLabel.text = unitText + "\(economyUnit)" + quantity
+        economyTotalCostLabel.text = totalText + "\(economyTotal)" + quantity
+        
+        expressUnitCostLabel.text = unitText + "\(expressUnit)" + quantity
+        expressTotalCostLabel.text = totalText + "\(expressTotal)" + quantity
+    }
+    
+    func changeLabels() {
+        if isEngLang {
+            partDimensionLabelView.text = "Part Dimension"
+            volumeLabelView.text = "Volume"
+            materialOptionsLabelView.text = "Material Options"
+            quantityRequiredLabelView.text = "Quantity"
+            economyLabelView.text = "Economy"
+            expressLabelView.text = "Express"
+        } else {
+            partDimensionLabelView.text = "Габариты детали"
+            volumeLabelView.text = "Обьем"
+            materialOptionsLabelView.text = "Выбор материала"
+            quantityRequiredLabelView.text = "Количество"
+            economyLabelView.text = "Эконом"
+            expressLabelView.text = "Экспресс"
+        }
     }
     
 }
-
